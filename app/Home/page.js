@@ -799,6 +799,7 @@ export default function HomePage() {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [citySearchInput, setCitySearchInput] = useState("");
     const [loggedInUser, setLoggedInUser] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const handleCityChange = (newCity) => {
         if (!newCity) return;
@@ -958,29 +959,30 @@ export default function HomePage() {
         <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
             {/* 1. TOP NAVBAR */}
             <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+                <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
                     {/* LOGO: SN business */}
-                    <div className="flex items-center gap-2">
-                        <a href="/Home" className="flex items-center text-xl sm:text-2xl font-extrabold tracking-tight">
-                            <span className="text-red-600 font-black">SN</span>
-                            <span className="text-[#0c1a2c] font-black">business</span>
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                        <a href="/Home" className="flex items-center text-lg sm:text-2xl font-black tracking-tight shrink-0">
+                            <span className="text-red-600">SN</span>
+                            <span className="text-[#0c1a2c]">business</span>
                         </a>
                         <span className="hidden sm:inline-block text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-600 px-2 py-0.5 rounded-full border border-red-200">
                             India
                         </span>
 
-                        {/* Mobile Location Badge */}
+                        {/* Location Badge (Clickable to change city) */}
                         <button
                             onClick={() => setActiveModal("city-select")}
-                            className="flex md:hidden items-center gap-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors"
+                            className="flex items-center gap-1 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full transition-all shrink-0 cursor-pointer"
                             title="Change City"
                         >
-                            <span className="truncate max-w-[70px]">{selectedCity}</span>
-                            <span className="text-[8px] text-amber-700">▼</span>
+                            <MapPinMiniIcon className="w-3 h-3 text-amber-600 shrink-0" />
+                            <span className="truncate max-w-[70px] sm:max-w-[110px]">{selectedCity}</span>
+                            <span className="text-[7px] text-amber-700">▼</span>
                         </button>
                     </div>
 
-                    {/* Quick Search bar in Navbar */}
+                    {/* Quick Search bar in Navbar (Desktop / Tablet) */}
                     <div className="hidden md:flex flex-1 max-w-md items-center bg-slate-50 border border-slate-300 rounded-full px-3 py-1 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all">
                         <div className="flex items-center text-xs font-semibold text-slate-600 pr-2 border-r border-slate-300">
                             <select
@@ -1016,10 +1018,10 @@ export default function HomePage() {
                     </div>
 
                     {/* Right Action Buttons */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                         <button
                             onClick={() => setActiveModal("browse")}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold text-xs transition-all"
+                            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold text-xs transition-all cursor-pointer"
                         >
                             <CompassIcon className="w-3.5 h-3.5 text-blue-600" />
                             <span>Browse</span>
@@ -1027,23 +1029,23 @@ export default function HomePage() {
 
                         <button
                             onClick={() => setActiveModal("advertising-quote")}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold text-xs transition-all"
+                            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-blue-50/80 sm:bg-transparent border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50 font-bold sm:font-semibold text-[11px] sm:text-xs transition-all cursor-pointer"
                         >
-                            <MegaphoneIcon className="w-3.5 h-3.5 text-blue-600" />
-                            <span>Advertise</span>
+                            <MegaphoneIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600 shrink-0" />
+                            <span className="hidden xs:inline">Advertise</span>
+                            <span className="xs:hidden">Ad</span>
                         </button>
 
                         <a
                             href="/user"
-                            className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all cursor-pointer ${
-                                loggedInUser
+                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center transition-all cursor-pointer shrink-0 ${loggedInUser
                                     ? "bg-[#ff5a00] text-white border-[#ff5a00] font-black text-xs shadow-xs"
                                     : "border-slate-300 text-slate-600 hover:text-blue-600 hover:border-blue-500"
-                            }`}
+                                }`}
                             title={loggedInUser ? `Account: ${loggedInUser.name}` : "User Account / Login"}
                         >
                             {loggedInUser ? (
-                                <span className="font-bold text-xs">{loggedInUser.name ? loggedInUser.name.charAt(0).toUpperCase() : "U"}</span>
+                                <span className="font-bold text-[11px] sm:text-xs">{loggedInUser.name ? loggedInUser.name.charAt(0).toUpperCase() : "U"}</span>
                             ) : (
                                 <UserIcon className="w-3.5 h-3.5" />
                             )}
@@ -1052,14 +1054,14 @@ export default function HomePage() {
                 </div>
             </header>
 
-            {/* 2. GRAND HERO BANNER (EXACT USER REFERENCE DESIGN - SAME TO SAME) */}
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 w-full space-y-6">
+            {/* 2. GRAND HERO BANNER */}
+            <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-5 w-full space-y-4 sm:space-y-6 overflow-hidden">
 
-                {/* === HERO SECTION: LEFT HERO CARD (NEW DESIGN) + RIGHT 4 QUICK CATEGORIES (2x2 GRID) === */}
-                <section className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+                {/* === HERO SECTION: LEFT HERO CARD + RIGHT 4 QUICK CATEGORIES (2x2 GRID) === */}
+                <section className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-5 items-stretch">
 
-                    {/* LEFT HERO CARD (ORIGINAL COMPACT SIZE ON LEFT, BUT WITH EXACT TARGET DESIGN) */}
-                    <div className="lg:col-span-7 rounded-3xl bg-gradient-to-br from-[#030d20] via-[#061737] to-[#09224c] p-5 sm:p-6 lg:p-7 text-white relative overflow-hidden shadow-xl border border-sky-900/40 flex flex-col justify-between min-h-[380px] sm:min-h-[420px]">
+                    {/* LEFT HERO CARD */}
+                    <div className="lg:col-span-7 rounded-3xl bg-gradient-to-br from-[#030d20] via-[#061737] to-[#09224c] p-4 sm:p-6 lg:p-7 text-white relative overflow-hidden shadow-xl border border-sky-900/40 flex flex-col justify-between min-h-[330px] sm:min-h-[420px]">
                         {/* Ambient Glows */}
                         <div className="absolute top-0 right-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
                         <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
@@ -1095,34 +1097,34 @@ export default function HomePage() {
                             </svg>
                         </div>
 
-                        {/* TOP HEADER: CITY {selectedCity} (DYNAMIC BASED ON DROPDOWN & SEARCH) */}
+                        {/* TOP HEADER: CITY {selectedCity} */}
                         <div className="relative z-10">
-                            <div className="flex items-center gap-2.5 sm:gap-3">
-                                {/* Golden Location Pin with Base Ring (Clickable to change city) */}
+                            <div className="flex items-center gap-2 sm:gap-3">
+                                {/* Golden Location Pin */}
                                 <button
                                     onClick={() => setActiveModal("city-select")}
-                                    className="w-9 h-11 sm:w-11 sm:h-13 shrink-0 flex items-center justify-center group cursor-pointer hover:scale-105 transition-transform"
+                                    className="w-8 h-10 sm:w-11 sm:h-13 shrink-0 flex items-center justify-center group cursor-pointer hover:scale-105 transition-transform"
                                     title="Click to search / change city"
                                 >
-                                    <svg className="w-9 h-11 sm:w-11 sm:h-13 drop-shadow-md" viewBox="0 0 54 62" fill="none">
+                                    <svg className="w-8 h-10 sm:w-11 sm:h-13 drop-shadow-md" viewBox="0 0 54 62" fill="none">
                                         <ellipse cx="27" cy="52" rx="18" ry="6" stroke="#f5a623" strokeWidth="3.5" fill="none" />
                                         <path d="M27 6 C17 6 9 14 9 24 C9 36 27 52 27 52 C27 52 45 36 45 24 C45 14 37 6 27 6 Z" fill="#f5a623" />
                                         <circle cx="27" cy="23" r="6" fill="#030d20" />
                                     </svg>
                                 </button>
                                 <div>
-                                    <span className="block text-base sm:text-xl font-black tracking-wider text-white uppercase leading-none">
+                                    <span className="block text-xs sm:text-xl font-black tracking-wider text-white uppercase leading-none">
                                         CITY
                                     </span>
-                                    <h2 className="text-xl sm:text-3xl font-black text-[#f5a623] tracking-tight uppercase leading-tight drop-shadow-sm">
+                                    <h2 className="text-lg sm:text-3xl font-black text-[#f5a623] tracking-tight uppercase leading-tight drop-shadow-sm truncate max-w-[220px] sm:max-w-none">
                                         {selectedCity ? selectedCity.toUpperCase() : "SANT KABIR NAGAR"}
                                     </h2>
                                 </div>
                             </div>
 
                             {/* Golden Swoosh Underline */}
-                            <div className="relative mt-1 mb-3.5 max-w-[260px] sm:max-w-[320px]">
-                                <svg className="w-full h-3 sm:h-3.5" viewBox="0 0 400 14" fill="none" preserveAspectRatio="none">
+                            <div className="relative mt-1 mb-2.5 sm:mb-3.5 max-w-[220px] sm:max-w-[320px]">
+                                <svg className="w-full h-2.5 sm:h-3.5" viewBox="0 0 400 14" fill="none" preserveAspectRatio="none">
                                     <path d="M2 4 C 120 12, 260 11, 398 2" stroke="url(#goldSwooshGradLeft)" strokeWidth="3.5" strokeLinecap="round" />
                                     <defs>
                                         <linearGradient id="goldSwooshGradLeft" x1="0" y1="0" x2="1" y2="0">
@@ -1138,62 +1140,62 @@ export default function HomePage() {
 
                         {/* MIDDLE CONTENT: Left Info + Right 3 Phones */}
                         <div className="relative z-10 flex flex-col justify-between flex-1">
-                            <div className="max-w-[50%] sm:max-w-[54%]">
+                            <div className="max-w-[62%] xs:max-w-[58%] sm:max-w-[54%]">
                                 {/* DOWNLOAD NOW Pill */}
                                 <button
                                     onClick={() => setActiveModal("download")}
-                                    className="inline-flex items-center gap-1.5 bg-[#f5a623] hover:bg-[#e09418] text-slate-950 font-black text-[11px] sm:text-xs px-3.5 py-1.5 rounded-full shadow-md active:scale-95 transition-all cursor-pointer"
+                                    className="inline-flex items-center gap-1 sm:gap-1.5 bg-[#f5a623] hover:bg-[#e09418] text-slate-950 font-black text-[10px] sm:text-xs px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full shadow-md active:scale-95 transition-all cursor-pointer"
                                 >
-                                    <DownloadIcon className="w-3.5 h-3.5 stroke-[3]" />
+                                    <DownloadIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[3]" />
                                     <span>DOWNLOAD NOW</span>
                                 </button>
 
                                 {/* Headline */}
-                                <h3 className="text-xl sm:text-2xl lg:text-[28px] font-black text-white mt-3 tracking-tight leading-tight">
+                                <h3 className="text-lg sm:text-2xl lg:text-[28px] font-black text-white mt-2 sm:mt-3 tracking-tight leading-tight">
                                     Your Business. <span className="text-[#f5a623]">One App.</span>
                                 </h3>
 
                                 {/* Subtitle */}
-                                <p className="text-slate-300 text-[11px] sm:text-xs mt-1.5 leading-relaxed font-normal">
+                                <p className="text-slate-300 text-[10px] sm:text-xs mt-1 leading-relaxed font-normal">
                                     Find verified schools, colleges, advertising agencies &amp; vendors on the go.
                                 </p>
 
                                 {/* Explore App CTA */}
-                                <div className="mt-4">
+                                <div className="mt-3 sm:mt-4">
                                     <button
                                         onClick={() => setActiveModal("download")}
-                                        className="inline-flex items-center gap-2 bg-[#f5a623] hover:bg-[#e09418] text-slate-950 font-black px-5 py-2.5 rounded-full text-xs shadow-lg hover:shadow-amber-500/25 active:scale-95 transition-all group cursor-pointer"
+                                        className="inline-flex items-center gap-1.5 bg-[#f5a623] hover:bg-[#e09418] text-slate-950 font-black px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs shadow-lg hover:shadow-amber-500/25 active:scale-95 transition-all group cursor-pointer"
                                     >
                                         <span>Explore App</span>
-                                        <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[3]" />
+                                        <ArrowRightIcon className="w-3 sm:w-3.5 h-3 sm:h-3.5 group-hover:translate-x-1 transition-transform stroke-[3]" />
                                     </button>
                                 </div>
                             </div>
 
-                            {/* 4 Feature Badges Bottom Bar (Inside Left Card) - Hidden on mobile */}
-                            <div className="hidden sm:grid mt-5 pt-3.5 border-t border-slate-700/60 grid-cols-4 gap-1 sm:gap-2 max-w-[52%] sm:max-w-[56%]">
+                            {/* Feature Badges Bottom Bar - Clearly visible & prominent on mobile */}
+                            <div className="flex flex-wrap sm:grid sm:grid-cols-4 items-center gap-1.5 sm:gap-2 mt-3.5 sm:mt-5 pt-2.5 sm:pt-3.5 border-t border-slate-700/60 max-w-[70%] sm:max-w-[56%] relative z-20">
                                 {/* 1. Verified */}
-                                <div className="flex flex-col items-start pr-1 sm:pr-2 border-r border-slate-700/60">
-                                    <div className="text-[#f5a623] mb-1">
-                                        <ShieldCheckIcon className="w-4 h-4 stroke-[2]" />
+                                <div className="inline-flex items-center gap-1.5 bg-[#030d20]/85 backdrop-blur-xs sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-amber-400/40 sm:border-none sm:flex-col sm:items-start sm:border-r sm:border-slate-700/60 shadow-xs">
+                                    <div className="text-[#f5a623] sm:mb-1 shrink-0">
+                                        <ShieldCheckIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2]" />
                                     </div>
-                                    <span className="text-[9px] sm:text-[10px] font-bold text-slate-200 leading-tight">
-                                        Verified<br />Businesses
+                                    <span className="text-[11px] sm:text-[10px] font-bold text-white sm:text-slate-200 leading-tight tracking-wide">
+                                        Verified<span className="hidden sm:inline"><br />Businesses</span>
                                     </span>
                                 </div>
 
                                 {/* 2. Local */}
-                                <div className="flex flex-col items-start px-1 sm:px-2 border-r border-slate-700/60">
-                                    <div className="text-[#f5a623] mb-1">
-                                        <MapPinMiniIcon className="w-4 h-4 stroke-[2]" />
+                                <div className="inline-flex items-center gap-1.5 bg-[#030d20]/85 backdrop-blur-xs sm:bg-transparent px-2.5 py-1 sm:p-0 rounded-full sm:rounded-none border border-amber-400/40 sm:border-none sm:flex-col sm:items-start sm:border-r sm:border-slate-700/60 shadow-xs">
+                                    <div className="text-[#f5a623] sm:mb-1 shrink-0">
+                                        <MapPinMiniIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2]" />
                                     </div>
-                                    <span className="text-[9px] sm:text-[10px] font-bold text-slate-200 leading-tight">
-                                        Local<br />Listings
+                                    <span className="text-[11px] sm:text-[10px] font-bold text-white sm:text-slate-200 leading-tight tracking-wide">
+                                        Local<span className="hidden sm:inline"><br />Listings</span>
                                     </span>
                                 </div>
 
-                                {/* 3. Fast & Easy */}
-                                <div className="flex flex-col items-start px-1 sm:px-2 border-r border-slate-700/60">
+                                {/* 3. Fast & Easy (Desktop) */}
+                                <div className="hidden sm:flex flex-col items-start px-1 sm:px-2 border-r border-slate-700/60">
                                     <div className="text-[#f5a623] mb-1">
                                         <LightningBoltIcon className="w-4 h-4 stroke-[2]" />
                                     </div>
@@ -1202,8 +1204,8 @@ export default function HomePage() {
                                     </span>
                                 </div>
 
-                                {/* 4. All in One */}
-                                <div className="flex flex-col items-start pl-1 sm:pl-2">
+                                {/* 4. All in One (Desktop) */}
+                                <div className="hidden sm:flex flex-col items-start pl-1 sm:pl-2">
                                     <div className="text-[#f5a623] mb-1">
                                         <DevicePhoneIcon className="w-4 h-4 stroke-[2]" />
                                     </div>
@@ -1214,8 +1216,8 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        {/* 3 REALISTIC PHONES (COMPACT SIZE - NO OVERLAP) */}
-                        <div className="absolute -bottom-3 right-0 sm:-bottom-2 sm:right-1 z-10 pointer-events-none select-none flex items-end justify-center transform scale-[0.52] xs:scale-[0.58] sm:scale-[0.66] lg:scale-[0.70] xl:scale-[0.72] origin-bottom-right">
+                        {/* 3 REALISTIC PHONES */}
+                        <div className="absolute -bottom-3 right-0 sm:-bottom-2 sm:right-1 z-10 pointer-events-none select-none flex items-end justify-center transform scale-[0.38] xs:scale-[0.48] sm:scale-[0.66] lg:scale-[0.70] xl:scale-[0.72] origin-bottom-right">
                             {/* Phone 1: Left (Tilted -6deg, Vendors) */}
                             <div className="w-32 sm:w-36 h-[250px] sm:h-[280px] bg-slate-950 rounded-[26px] border-2 border-slate-700 shadow-xl rotate-[-6deg] -mr-8 z-10 shrink-0 p-1.5 overflow-hidden">
                                 <div className="w-full h-full bg-slate-50 rounded-[20px] p-2 flex flex-col justify-between text-slate-800">
@@ -1365,41 +1367,41 @@ export default function HomePage() {
                         </div>
                     </div>
 
-                    {/* RIGHT SIDE: 4 QUICK CATEGORY SHORTCUTS (2x2 GRID) - HIDDEN ON MOBILE */}
+                    {/* RIGHT SIDE: 4 QUICK CATEGORY SHORTCUTS (HIDDEN ON MOBILE, VISIBLE ON DESKTOP) */}
                     <div className="hidden md:grid lg:col-span-5 grid-cols-2 gap-3 sm:gap-3.5">
 
                         {/* 1. School & College */}
                         <div
                             onClick={() => setActiveModal("school-quote")}
-                            className="group bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-amber-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[142px] sm:min-h-[148px]"
+                            className="group bg-white rounded-2xl p-2.5 sm:p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-amber-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[105px] sm:min-h-[148px]"
                         >
                             <div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shadow-2xs">
-                                        <AcademicCapIcon className="w-4 h-4" />
+                                <div className="flex items-center gap-1.5 sm:gap-2">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shadow-2xs shrink-0">
+                                        <AcademicCapIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-amber-600 transition-colors leading-none">
+                                    <div className="min-w-0">
+                                        <h3 className="text-xs sm:text-base font-black text-slate-900 group-hover:text-amber-600 transition-colors leading-tight truncate">
                                             School &amp; College
                                         </h3>
-                                        <p className="text-[10px] font-bold text-slate-500 mt-0.5">
-                                            Top Institutes &amp; Academies
+                                        <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 mt-0.5 truncate">
+                                            Top Institutes
                                         </p>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
+                                <p className="hidden sm:block text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
                                     Find top schools, colleges &amp; admission coaching.
                                 </p>
                             </div>
 
-                            <div className="mt-2 flex items-end justify-between">
+                            <div className="mt-1 sm:mt-2 flex items-end justify-between">
                                 <button
-                                    className="w-7 h-7 rounded-full bg-[#f5a623] hover:bg-[#e09418] text-slate-950 flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0 cursor-pointer"
+                                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#f5a623] hover:bg-[#e09418] text-slate-950 flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0 cursor-pointer"
                                     title="Explore School & College"
                                 >
-                                    <ArrowRightIcon className="w-3.5 h-3.5" />
+                                    <ArrowRightIcon className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                                 </button>
-                                <div className="transform translate-x-1 translate-y-1">
+                                <div className="hidden sm:block transform translate-x-1 translate-y-1">
                                     <SchoolCollegeIllustration />
                                 </div>
                             </div>
@@ -1408,35 +1410,35 @@ export default function HomePage() {
                         {/* 2. B2B Deals */}
                         <div
                             onClick={() => setActiveModal("b2b-quote")}
-                            className="group bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[142px] sm:min-h-[148px]"
+                            className="group bg-white rounded-2xl p-2.5 sm:p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[105px] sm:min-h-[148px]"
                         >
                             <div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 shadow-2xs">
-                                        <BriefcaseIcon className="w-4 h-4" />
+                                <div className="flex items-center gap-1.5 sm:gap-2">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 shadow-2xs shrink-0">
+                                        <BriefcaseIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-none">
+                                    <div className="min-w-0">
+                                        <h3 className="text-xs sm:text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-tight truncate">
                                             B2B Deals
                                         </h3>
-                                        <p className="text-[10px] font-bold text-slate-500 mt-0.5">
+                                        <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 mt-0.5 truncate">
                                             Quick Quotes
                                         </p>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
+                                <p className="hidden sm:block text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
                                     Wholesalers &amp; verified suppliers across industries.
                                 </p>
                             </div>
 
-                            <div className="mt-2 flex items-end justify-between">
+                            <div className="mt-1 sm:mt-2 flex items-end justify-between">
                                 <button
-                                    className="w-7 h-7 rounded-full bg-[#1967d2] hover:bg-[#1557b0] text-white flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0 cursor-pointer"
+                                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#1967d2] hover:bg-[#1557b0] text-white flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0 cursor-pointer"
                                     title="Explore B2B"
                                 >
-                                    <ArrowRightIcon className="w-3.5 h-3.5" />
+                                    <ArrowRightIcon className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                                 </button>
-                                <div className="transform translate-x-1 translate-y-1">
+                                <div className="hidden sm:block transform translate-x-1 translate-y-1">
                                     <B2BIllustration />
                                 </div>
                             </div>
@@ -1445,35 +1447,35 @@ export default function HomePage() {
                         {/* 3. Repairs & Services */}
                         <div
                             onClick={() => setActiveModal("repair-quote")}
-                            className="group bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[142px] sm:min-h-[148px]"
+                            className="group bg-white rounded-2xl p-2.5 sm:p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[105px] sm:min-h-[148px]"
                         >
                             <div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-2xs">
-                                        <WrenchIcon className="w-4 h-4" />
+                                <div className="flex items-center gap-1.5 sm:gap-2">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-2xs shrink-0">
+                                        <WrenchIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-emerald-600 transition-colors leading-none">
+                                    <div className="min-w-0">
+                                        <h3 className="text-xs sm:text-base font-black text-slate-900 group-hover:text-emerald-600 transition-colors leading-tight truncate">
                                             Repairs &amp; Services
                                         </h3>
-                                        <p className="text-[10px] font-bold text-slate-500 mt-0.5">
+                                        <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 mt-0.5 truncate">
                                             Nearest Vendors
                                         </p>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
+                                <p className="hidden sm:block text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
                                     AC, electrician, plumber &amp; service pros near you.
                                 </p>
                             </div>
 
-                            <div className="mt-2 flex items-end justify-between">
+                            <div className="mt-1 sm:mt-2 flex items-end justify-between">
                                 <button
-                                    className="w-7 h-7 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0 cursor-pointer"
+                                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0 cursor-pointer"
                                     title="Explore Repairs"
                                 >
-                                    <ArrowRightIcon className="w-3.5 h-3.5" />
+                                    <ArrowRightIcon className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                                 </button>
-                                <div className="transform translate-x-1 translate-y-1">
+                                <div className="hidden sm:block transform translate-x-1 translate-y-1">
                                     <RepairsIllustration />
                                 </div>
                             </div>
@@ -1482,35 +1484,35 @@ export default function HomePage() {
                         {/* 4. Advertising Services */}
                         <div
                             onClick={() => setActiveModal("advertising-quote")}
-                            className="group bg-white rounded-2xl p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-purple-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[142px] sm:min-h-[148px]"
+                            className="group bg-white rounded-2xl p-2.5 sm:p-3.5 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-purple-300 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[105px] sm:min-h-[148px]"
                         >
                             <div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 shadow-2xs">
-                                        <SpeakerphoneIcon className="w-4 h-4" />
+                                <div className="flex items-center gap-1.5 sm:gap-2">
+                                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700 shadow-2xs shrink-0">
+                                        <SpeakerphoneIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-indigo-600 transition-colors leading-none">
-                                            Advertising Services
+                                    <div className="min-w-0">
+                                        <h3 className="text-xs sm:text-base font-black text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight truncate">
+                                            Advertising
                                         </h3>
-                                        <p className="text-[10px] font-bold text-slate-500 mt-0.5">
-                                            Branding &amp; Promotion
+                                        <p className="text-[9px] sm:text-[10px] font-bold text-slate-500 mt-0.5 truncate">
+                                            Branding &amp; Ads
                                         </p>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
+                                <p className="hidden sm:block text-[10px] text-slate-400 mt-1.5 max-w-[140px] line-clamp-1 leading-snug">
                                     Hoardings, digital marketing &amp; local brand promotion.
                                 </p>
                             </div>
 
-                            <div className="mt-2 flex items-end justify-between">
+                            <div className="mt-1 sm:mt-2 flex items-end justify-between">
                                 <button
-                                    className="w-7 h-7 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0"
+                                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center font-black shadow-xs hover:scale-105 transition-all shrink-0"
                                     title="Explore Advertising Services"
                                 >
-                                    <ArrowRightIcon className="w-3.5 h-3.5" />
+                                    <ArrowRightIcon className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                                 </button>
-                                <div className="transform translate-x-1 translate-y-1">
+                                <div className="hidden sm:block transform translate-x-1 translate-y-1">
                                     <AdvertisingIllustration />
                                 </div>
                             </div>
@@ -1552,10 +1554,10 @@ export default function HomePage() {
                                 </div>
 
                                 {/* Items Container with Horizontal Scroll & Chevron Button */}
-                                <div className="relative flex items-center">
+                                <div className="relative flex items-center w-full">
                                     <div
                                         id={`scroll-${group.id}`}
-                                        className="flex items-start gap-3 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-2 pt-1 pr-12 w-full"
+                                        className="flex items-start gap-2.5 xs:gap-3 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth pb-2 pt-1 pr-10 sm:pr-12 w-full touch-pan-x"
                                         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                                     >
                                         {group.items.map((item) => (
@@ -1565,14 +1567,14 @@ export default function HomePage() {
                                                     setSelectedCategory(item);
                                                     setActiveModal("category-detail");
                                                 }}
-                                                className="group flex flex-col items-center text-center cursor-pointer shrink-0 w-[82px] sm:w-[92px] transition-all hover:-translate-y-1"
+                                                className="group flex flex-col items-center text-center cursor-pointer shrink-0 w-[72px] xs:w-[80px] sm:w-[92px] transition-all hover:-translate-y-0.5"
                                             >
                                                 <CategoryIcon type={item.iconType} />
-                                                <span className="mt-2 text-[11.5px] sm:text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">
+                                                <span className="mt-1.5 text-[11px] sm:text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">
                                                     {item.title}
                                                 </span>
                                                 {item.sub && (
-                                                    <span className="text-[10px] sm:text-[10.5px] font-medium text-slate-500 group-hover:text-blue-600 transition-colors leading-normal pt-1 pb-0.5 px-0.5 block truncate max-w-full">
+                                                    <span className="text-[9.5px] sm:text-[10.5px] font-medium text-slate-500 group-hover:text-blue-600 transition-colors leading-normal pt-0.5 block truncate max-w-full">
                                                         {item.sub}
                                                     </span>
                                                 )}
@@ -1580,16 +1582,20 @@ export default function HomePage() {
                                         ))}
                                     </div>
 
-                                    {/* Scroll Right button */}
+                                    {/* Soft edge fade indicating scrollability */}
+                                    <div className="pointer-events-none absolute right-0 top-0 bottom-2 w-10 bg-gradient-to-l from-white via-white/80 to-transparent z-5"></div>
+
+                                    {/* Scroll Right button - visible on mobile & desktop to indicate row is scrollable */}
                                     <button
                                         onClick={() => {
                                             const el = document.getElementById(`scroll-${group.id}`);
-                                            if (el) el.scrollBy({ left: 180, behavior: "smooth" });
+                                            if (el) el.scrollBy({ left: 160, behavior: "smooth" });
                                         }}
-                                        className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-md border border-slate-200/90 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 hover:scale-105 transition-all z-10 shrink-0"
-                                        title="View more"
+                                        className="flex absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white shadow-md border border-slate-200/90 items-center justify-center text-slate-700 hover:text-blue-600 active:scale-95 hover:bg-slate-50 transition-all z-10 shrink-0 cursor-pointer"
+                                        title="View more / Scroll right"
+                                        aria-label="Scroll right"
                                     >
-                                        <span className="text-base font-bold leading-none mb-0.5">›</span>
+                                        <span className="text-sm sm:text-base font-bold leading-none mb-0.5">›</span>
                                     </button>
                                 </div>
                             </div>
@@ -1624,10 +1630,170 @@ export default function HomePage() {
             {/* 5. FOOTER */}
             <Footer />
 
+            {/* Mobile Navigation Drawer */}
+            {mobileMenuOpen && (
+                <div className="fixed inset-0 z-50 flex">
+                    {/* Backdrop */}
+                    <div
+                        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+                        onClick={() => setMobileMenuOpen(false)}
+                    />
+                    {/* Drawer content */}
+                    <div className="relative ml-auto w-full max-w-xs bg-white h-full shadow-2xl flex flex-col justify-between p-5 z-10 overflow-y-auto animate-in slide-in-from-right duration-200">
+                        <div>
+                            <div className="flex items-center justify-between pb-3.5 border-b border-slate-100">
+                                <div className="text-xl font-black">
+                                    <span className="text-red-600">SN</span>
+                                    <span className="text-[#0c1a2c]">business</span>
+                                </div>
+                                <button
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-slate-200 cursor-pointer"
+                                >
+                                    <CloseXIcon className="w-4 h-4" />
+                                </button>
+                            </div>
+
+                            {/* User Info / Login in Drawer */}
+                            <div className="my-4 p-3 bg-slate-50 rounded-2xl border border-slate-200/80">
+                                {loggedInUser ? (
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-[#ff5a00] text-white font-black flex items-center justify-center text-sm shadow-xs shrink-0">
+                                            {loggedInUser.name ? loggedInUser.name.charAt(0).toUpperCase() : "U"}
+                                        </div>
+                                        <div className="truncate">
+                                            <p className="font-bold text-xs text-slate-900 truncate">{loggedInUser.name || "SN User"}</p>
+                                            <p className="text-[10px] text-slate-500 truncate">{loggedInUser.phone || "Active Member"}</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <p className="font-bold text-xs text-slate-800">Welcome to SN Business</p>
+                                            <p className="text-[10px] text-slate-400">Join verified local community</p>
+                                        </div>
+                                        <a
+                                            href="/user"
+                                            className="px-3 py-1.5 bg-blue-600 text-white rounded-full text-xs font-bold shadow-xs hover:bg-blue-700"
+                                        >
+                                            Login
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* City Switcher in Drawer */}
+                            <div className="mb-4">
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                                    Selected City / चुना गया जिला
+                                </label>
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setActiveModal("city-select");
+                                    }}
+                                    className="w-full flex items-center justify-between p-2.5 bg-amber-50/80 border border-amber-200 rounded-xl text-amber-900 font-bold text-xs cursor-pointer hover:bg-amber-100 transition-colors"
+                                >
+                                    <span className="flex items-center gap-1.5 truncate">
+                                        <PinLocationIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                                        <span className="truncate">{selectedCity}</span>
+                                    </span>
+                                    <span className="text-[10px] bg-[#f5a623] text-slate-950 px-2 py-0.5 rounded-md font-bold shrink-0">
+                                        Change
+                                    </span>
+                                </button>
+                            </div>
+
+                            {/* Navigation Links in Drawer */}
+                            <nav className="space-y-1 text-xs font-bold text-slate-700">
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setActiveModal("browse");
+                                    }}
+                                    className="w-full flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl text-left transition-colors cursor-pointer"
+                                >
+                                    <CompassIcon className="w-4 h-4 text-blue-600 shrink-0" />
+                                    <span>Browse All Categories</span>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setActiveModal("advertising-quote");
+                                    }}
+                                    className="w-full flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl text-left transition-colors cursor-pointer"
+                                >
+                                    <MegaphoneIcon className="w-4 h-4 text-blue-600 shrink-0" />
+                                    <span>Advertise / Free Listing</span>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setActiveModal("school-quote");
+                                    }}
+                                    className="w-full flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl text-left transition-colors cursor-pointer"
+                                >
+                                    <AcademicCapIcon className="w-4 h-4 text-amber-600 shrink-0" />
+                                    <span>School &amp; College Admissions</span>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setActiveModal("b2b-quote");
+                                    }}
+                                    className="w-full flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl text-left transition-colors cursor-pointer"
+                                >
+                                    <BriefcaseIcon className="w-4 h-4 text-blue-600 shrink-0" />
+                                    <span>B2B Wholesale Hub</span>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setActiveModal("repair-quote");
+                                    }}
+                                    className="w-full flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl text-left transition-colors cursor-pointer"
+                                >
+                                    <WrenchIcon className="w-4 h-4 text-emerald-600 shrink-0" />
+                                    <span>Repairs &amp; Maintenance</span>
+                                </button>
+                                <a
+                                    href="/user"
+                                    className="flex items-center gap-3 p-2.5 hover:bg-slate-50 rounded-xl transition-colors text-slate-700"
+                                >
+                                    <UserIcon className="w-4 h-4 text-slate-600 shrink-0" />
+                                    <span>User Account &amp; Dashboard</span>
+                                </a>
+                                <a
+                                    href="/admin"
+                                    className="flex items-center gap-3 p-2.5 hover:bg-purple-50 rounded-xl transition-colors text-purple-700"
+                                >
+                                    <LockClosedIcon className="w-4 h-4 text-purple-600 shrink-0" />
+                                    <span>Admin Panel</span>
+                                </a>
+                            </nav>
+                        </div>
+
+                        {/* Bottom CTA in Drawer */}
+                        <div className="pt-4 border-t border-slate-100">
+                            <button
+                                onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    setActiveModal("download");
+                                }}
+                                className="w-full py-2.5 bg-[#f5a623] hover:bg-[#e09418] text-slate-950 rounded-xl font-black text-xs flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                            >
+                                <DownloadIcon className="w-3.5 h-3.5" />
+                                <span>Download Android App</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* 6. MODALS */}
             {activeModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-                    <div className={`bg-white rounded-3xl p-5 sm:p-7 ${(activeModal === "city-select" || activeModal === "account") ? "max-w-md" : "max-w-sm"} w-full shadow-2xl relative animate-in fade-in zoom-in duration-150`}>
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4">
+                    <div className={`bg-white rounded-3xl p-5 sm:p-7 ${(activeModal === "city-select" || activeModal === "account") ? "max-w-md" : "max-w-sm"} w-full shadow-2xl relative animate-in fade-in zoom-in duration-150 max-h-[90vh] overflow-y-auto`}>
                         <button
                             onClick={() => setActiveModal(null)}
                             className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 text-xs font-bold cursor-pointer z-10"

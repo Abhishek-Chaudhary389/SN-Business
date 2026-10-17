@@ -53,9 +53,9 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
-                    <p>Designed and Built for SN Business. All rights reserved.</p>
-                    <div className="flex gap-4 text-xs">
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3 text-center sm:text-left">
+                    <p>© 2026 SN Business. All rights reserved.</p>
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs">
                         <a href="#" className="hover:text-blue-600">Privacy Policy</a>
                         <a href="#" className="hover:text-blue-600">Terms of Use</a>
                         <a href="/admin" className="text-blue-600 hover:text-blue-800 font-bold">Admin Panel</a>

@@ -193,10 +193,10 @@ export default function UserLoginPage() {
                     </a>
 
                     {/* Right Action Buttons */}
-                    <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-1.5 sm:gap-3">
                         <a
                             href="/Home"
-                            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50/80 font-semibold text-xs transition-all shadow-xs"
+                            className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50/80 font-semibold text-xs transition-all shadow-xs"
                         >
                             <CompassIcon className="w-3.5 h-3.5 text-blue-600" />
                             <span>Browse</span>
@@ -204,18 +204,19 @@ export default function UserLoginPage() {
 
                         <a
                             href="/Home"
-                            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50/80 font-semibold text-xs transition-all shadow-xs"
+                            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-blue-200 hover:border-blue-500 text-blue-600 hover:bg-blue-50/80 font-semibold text-xs transition-all shadow-xs"
                         >
                             <MegaphoneIcon className="w-3.5 h-3.5 text-blue-600" />
-                            <span>Advertise</span>
+                            <span className="hidden xs:inline">Advertise</span>
+                            <span className="xs:hidden">Ad</span>
                         </a>
 
                         <a
                             href="/Home"
-                            className="w-8 h-8 rounded-full border border-slate-300 hover:border-orange-500 hover:text-[#ff5a00] flex items-center justify-center text-slate-600 transition-all cursor-pointer bg-slate-50/80 hover:bg-white shadow-xs"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-slate-300 hover:border-orange-500 hover:text-[#ff5a00] flex items-center justify-center text-slate-600 transition-all cursor-pointer bg-slate-50/80 hover:bg-white shadow-xs"
                             title="Back to Home"
                         >
-                            <UserIcon className="w-3.5 h-3.5" />
+                            <ArrowLeftIcon className="w-3.5 h-3.5" />
                         </a>
                     </div>
                 </div>
