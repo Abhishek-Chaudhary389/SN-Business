@@ -46,7 +46,7 @@ export default function Footer() {
                         <h4 className="font-bold text-xs text-slate-900 mb-2">For Businesses</h4>
                         <ul className="space-y-1.5 text-xs text-slate-600">
                             <li><a href="#" className="hover:text-blue-600">Advertise on SN Business</a></li>
-                            <li><a href="#" className="hover:text-blue-600">Free Business Listing</a></li>
+                            <li><a href="/free-listing" className="hover:text-blue-600">Free Business Listing</a></li>
                             <li><a href="#" className="hover:text-blue-600">Lead Generation Services</a></li>
                             <li><a href="#" className="hover:text-blue-600">Customer Support</a></li>
                         </ul>

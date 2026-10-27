@@ -204,6 +204,22 @@ function CloseXIcon({ className = "w-3.5 h-3.5" }) {
     );
 }
 
+function PhoneIcon({ className = "w-3.5 h-3.5" }) {
+    return (
+        <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+    );
+}
+
+function DocumentListingIcon({ className = "w-4 h-4" }) {
+    return (
+        <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+    );
+}
+
 // Compact 3D Art 1: School & College (Building, Graduation Cap & Book)
 function SchoolCollegeIllustration() {
     return (
@@ -788,18 +804,162 @@ export function CategoryIcon({ type }) {
 }
 
 const CITIES_LIST = [
+    "Gorakhpur",
     "Sant Kabir Nagar",
     "Basti",
+    "Khalilabad",
+    "Lucknow",
+    "Varanasi",
+    "Ayodhya",
+    "Deoria",
+    "Maharajganj",
+    "Patna",
+];
+
+export const DEFAULT_RECENT_LISTINGS = [
+    {
+        id: "dandiya-night",
+        type: "poster",
+        image: "/dandiya-poster.jpg",
+        title: "डांडिया नाइट तारामंडल गोरखपुर",
+        author: "ankur",
+        phone: "7054711464",
+        city: "Gorakhpur",
+        category: "Events & Festivities",
+        fullText: "Big Smile x Carnival of Dance Presents Fusion Fiesta Season-2 गरबामहोत्सव 16th & 17th October 2026. Passes available on BookMyShow & District. Live DJ, Live Dhol, Face Painting, Selfie Booth, Free Welcome Drink, Indoor & Outdoor Games, Food Stalls. Venue: JSR Carnival, Nauka Vihar, Gorakhpur. Pass booking: 7054711464, 8922015858, 6386511464.",
+    },
+    {
+        id: "stranger-talkmeet",
+        type: "poster",
+        image: "/stranger-talkmeet-poster.jpg",
+        title: "Gorakhpur",
+        author: "ankur",
+        phone: "8736833390",
+        city: "Gorakhpur",
+        category: "Meetups & Creators",
+        fullText: "Estd 2026 STRANGER TALKMEET - Creator / Guest Nidhi Singh (Creator & Content Creator). DATE: 17 & 18 OCT. VENUE: Julian Club and Resort, Azad Chowk, near Bagaha Baba Shakti Nagar Colony, Gorakhpur, Uttar Pradesh 273016. Call on 8736833390.",
+    },
+    {
+        id: "plot-bikau",
+        type: "text",
+        title: "प्लाट बिकाऊ है",
+        author: "vipin kumar",
+        phone: "9628105580",
+        city: "Gorakhpur",
+        category: "Real Estate",
+        text: "प्लाट बिकाऊ है रामलीला मैदान से सूर्य बिहार रोड के बीच में एकदम रोड पर एरिया 1200 स्क्वायर फीट प्रति स्क्वायर फीट 12000 रुपया/- मोबाइल...",
+        fullText: "प्लाट बिकाऊ है रामलीला मैदान से सूर्य बिहार रोड के बीच में एकदम रोड पर एरिया 1200 स्क्वायर फीट प्रति स्क्वायर फीट 12000 रुपया/- तुरंत रजिस्ट्री एवं कब्जा। मोबाइल: 9628105580",
+    },
+    {
+        id: "gas-stove-repair",
+        type: "text",
+        title: "1. Gas Stove, Mixer, Induction, Chimney Re...",
+        author: "Shyam",
+        phone: "8767059396",
+        city: "Gorakhpur",
+        category: "Repairs & Services",
+        text: "1. • सभी प्रकार के गैस स्टोव, मिक्सर, इंडक्शन और चिमनी की रिपेयरिंग और सर्विस उचित दाम पर घर बैठे की जाती है। • अपना फ़ोन नंबर और इलाका...",
+        fullText: "1. • सभी प्रकार के गैस स्टोव, मिक्सर, इंडक्शन और चिमनी की रिपेयरिंग और सर्विस उचित दाम पर घर बैठे की जाती है। • अपना फ़ोन नंबर और इलाका बताएं, उचित दाम पर त्वरित सर्विस। फोन: 8767059396",
+    },
+    {
+        id: "gita-vatika-rent",
+        type: "text",
+        title: "गीता वाटिका गोरखपुर",
+        author: "mahesh babu",
+        phone: "7007106362",
+        city: "Gorakhpur",
+        category: "House & Room Rent",
+        text: "दो रूम लेटिन बाथरूम किचन किराया. 7000+ बिजली तीन रूम लेटिन बाथरूम किचन किराया. 10,000+ बिजली पता. गीता वाटिका, गोइड़हवा पुल, और पादरी बा...",
+        fullText: "दो रूम लेटिन बाथरूम किचन किराया 7000+ बिजली। तीन रूम लेटिन बाथरूम किचन किराया 10,000+ बिजली। पता: गीता वाटिका, गोइड़हवा पुल, और पादरी बाजार गोरखपुर। संपर्क: 7007106362",
+    },
+    {
+        id: "inevora-beauty",
+        type: "text",
+        title: "🌸 INEVORA Navratri Special – Beauty at H...",
+        author: "Manjesh Kannaujiya",
+        phone: "8381880757",
+        city: "Gorakhpur",
+        category: "Beauty & Wellness",
+        text: "🌸✨ GORAKHPUR, BEAUTY CARE AB AAPKE GHAR! ✨🌸 ❤️ Introducing INEVORA – Professional Beauty at Home ❤️ Ab parlour jaane ki tension chhodi...",
+        fullText: "🌸✨ GORAKHPUR, BEAUTY CARE AB AAPKE GHAR! ✨🌸 ❤️ Introducing INEVORA – Professional Beauty at Home ❤️ Ab parlour jaane ki tension chhodie, ghar baithe salon jaisa glow payein. Navratri Special Package: 8381880757",
+    },
 ];
 
 export default function HomePage() {
-    const [selectedCity, setSelectedCity] = useState("Sant Kabir Nagar");
+    const [selectedCity, setSelectedCity] = useState("Gorakhpur");
     const [searchQuery, setSearchQuery] = useState("");
     const [activeModal, setActiveModal] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [citySearchInput, setCitySearchInput] = useState("");
     const [loggedInUser, setLoggedInUser] = useState(null);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [recentListings, setRecentListings] = useState(DEFAULT_RECENT_LISTINGS);
+    const [selectedListing, setSelectedListing] = useState(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const savedCity = localStorage.getItem("sn_selected_city");
+            if (savedCity) {
+                setSelectedCity(savedCity);
+            }
+
+            const refreshListings = () => {
+                let baseListings = DEFAULT_RECENT_LISTINGS;
+                const savedSpecialAds = localStorage.getItem("sn_special_ads");
+                if (savedSpecialAds) {
+                    try {
+                        const parsed = JSON.parse(savedSpecialAds);
+                        if (Array.isArray(parsed) && parsed.length > 0) {
+                            baseListings = parsed;
+                        }
+                    } catch (e) {
+                        console.error("Failed to parse sn_special_ads", e);
+                    }
+                }
+
+                const savedUserListings = localStorage.getItem("sn_user_listings");
+                if (savedUserListings) {
+                    try {
+                        const parsedUser = JSON.parse(savedUserListings);
+                        if (Array.isArray(parsedUser) && parsedUser.length > 0) {
+                            const customCards = parsedUser.map((item) => ({
+                                id: item.id || `custom-${Date.now()}`,
+                                type: "text",
+                                title: item.title,
+                                author: item.owner || "SN Business Vendor",
+                                phone: item.phone || "9876543210",
+                                city: item.city || "Gorakhpur",
+                                category: item.category || "General Business",
+                                text: `${item.title} - ${item.category}. ${item.address || "Gorakhpur"}. Contact vendor directly for best deals and enquiry.`,
+                                fullText: `${item.title} - ${item.category}. Address: ${item.address || "Gorakhpur"}. Contact: ${item.phone}`,
+                            }));
+                            setRecentListings([...customCards, ...baseListings]);
+                            return;
+                        }
+                    } catch (e) {
+                        console.error("Failed to parse sn_user_listings", e);
+                    }
+                }
+                setRecentListings(baseListings);
+            };
+
+            refreshListings();
+
+            const handleStorageChange = (e) => {
+                if (!e.key || e.key === "sn_special_ads" || e.key === "sn_user_listings") {
+                    refreshListings();
+                }
+            };
+            window.addEventListener("storage", handleStorageChange);
+            window.addEventListener("sn_ads_updated", refreshListings);
+            window.addEventListener("sn_listings_updated", refreshListings);
+            return () => {
+                window.removeEventListener("storage", handleStorageChange);
+                window.removeEventListener("sn_ads_updated", refreshListings);
+                window.removeEventListener("sn_listings_updated", refreshListings);
+            };
+        }
+    }, []);
 
     const handleCityChange = (newCity) => {
         if (!newCity) return;
@@ -966,9 +1126,6 @@ export default function HomePage() {
                             <span className="text-red-600">SN</span>
                             <span className="text-[#0c1a2c]">business</span>
                         </a>
-                        <span className="hidden sm:inline-block text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-600 px-2 py-0.5 rounded-full border border-red-200">
-                            India
-                        </span>
 
                         {/* Location Badge (Clickable to change city) */}
                         <button
@@ -1603,24 +1760,216 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                {/* 4. BUSINESS GROWTH BANNER */}
-                <section className="bg-gradient-to-r from-[#0c1a2c] via-[#152a44] to-[#1967d2] rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg">
-                    <div className="max-w-xl relative z-10 space-y-3">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded-full border border-amber-400/20">
-                            Grow Your Business
-                        </span>
-                        <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-                            Grow your local brand with SN Business
-                        </h3>
-                        <p className="text-slate-300 text-xs leading-relaxed">
-                            List your business today, get genuine customer leads, phone calls, and direct quotation requests without paying heavy commissions.
-                        </p>
-                        <div className="pt-1">
+
+                {/* 3.6 SPECIAL ADVERTISEMENT SECTION */}
+                <section className="space-y-3.5 pt-2">
+                    {/* Premium Section Header with Gradient Accent & Tag */}
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2.5 pb-1">
+                        <div>
+
+                            {/* Main Title with Vertical Gradient Bar and Hindi Badge */}
+                            <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+                                <div className="w-1.5 h-6 sm:h-7 rounded-full bg-gradient-to-b from-[#f5a623] via-[#ff5a00] to-[#1967d2] shrink-0"></div>
+                                <h2 className="text-xl sm:text-2xl lg:text-[26px] font-black text-slate-900 tracking-tight flex items-center gap-2 flex-wrap">
+                                    <span>Special Advertisement</span>
+                                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs sm:text-sm font-extrabold bg-gradient-to-r from-orange-500/10 to-amber-500/10 text-[#d95100] border border-orange-300/60 shadow-2xs">
+                                        (विशेष विज्ञापन)
+                                    </span>
+                                </h2>
+                            </div>
+                            <p className="text-[11px] sm:text-xs text-slate-500 mt-1 ml-3.5">
+                                Exclusive local flyers, offers &amp; verified promotions in {selectedCity}
+                            </p>
+                        </div>
+
+                        {/* Styled 'View all' Button */}
+                        <button
+                            onClick={() => setActiveModal("all-listings")}
+                            className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100/80 px-3.5 py-1.5 rounded-xl border border-blue-200/70 transition-all cursor-pointer self-start sm:self-auto shrink-0 shadow-2xs group"
+                        >
+                            <span>View all</span>
+                            <span className="group-hover:translate-x-0.5 transition-transform font-bold">›</span>
+                        </button>
+                    </div>
+
+                    {/* Responsive Grid: 2 columns on mobile, 3 on desktop (Matching Screenshot) */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4 md:gap-5">
+                        {recentListings.map((item) => (
+                            <div
+                                key={item.id}
+                                className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-lg transition-all overflow-hidden flex flex-col justify-between group"
+                            >
+                                {item.type === "poster" ? (
+                                    /* Poster Flyer Card - Full 3:4 Poster Ratio */
+                                    <div
+                                        onClick={() => {
+                                            setSelectedListing(item);
+                                            setActiveModal("listing-detail");
+                                        }}
+                                        className="relative w-full aspect-[3/4] bg-slate-900 overflow-hidden cursor-pointer"
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={item.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                ) : (
+                                    /* Two-Tone Document / Classified Card */
+                                    <div
+                                        onClick={() => {
+                                            setSelectedListing(item);
+                                            setActiveModal("listing-detail");
+                                        }}
+                                        className="p-3 sm:p-5 bg-[#f0f6ff] min-h-[160px] sm:min-h-[220px] flex flex-col justify-start border-b border-blue-100/60 cursor-pointer overflow-hidden flex-1"
+                                    >
+                                        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white/95 text-blue-600 flex items-center justify-center mb-2 sm:mb-3 shadow-2xs shrink-0">
+                                            <DocumentListingIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
+                                        </div>
+                                        <p className="text-[11px] sm:text-xs text-slate-700 leading-relaxed font-normal line-clamp-5 sm:line-clamp-6">
+                                            {item.text}
+                                        </p>
+                                    </div>
+                                )}
+
+                                {/* Card Footer: Title, Author, Call Button */}
+                                <div className="p-2.5 sm:p-4 bg-white flex flex-col justify-between">
+                                    <div>
+                                        <h3
+                                            onClick={() => {
+                                                setSelectedListing(item);
+                                                setActiveModal("listing-detail");
+                                            }}
+                                            className="font-bold text-xs sm:text-sm md:text-base text-slate-900 group-hover:text-blue-600 transition-colors truncate cursor-pointer leading-tight"
+                                            title={item.title}
+                                        >
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-[10px] sm:text-xs text-slate-400 font-medium mt-0.5 capitalize truncate">
+                                            {item.author}
+                                        </p>
+                                    </div>
+
+                                    <a
+                                        href={`tel:${item.phone.replace(/[^0-9+]/g, "")}`}
+                                        className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs md:text-sm font-bold text-blue-600 hover:text-blue-800 mt-2 sm:mt-2.5 transition-colors self-start truncate max-w-full"
+                                    >
+                                        <PhoneIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600 shrink-0" />
+                                        <span className="truncate">{item.phone}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* 4. BUSINESS GROWTH BANNER (Exact design & text in Red) */}
+                <section className="rounded-3xl overflow-hidden shadow-xl border border-red-100/50 bg-slate-50/60 my-6">
+                    {/* Royal Red Header */}
+                    <div className="bg-gradient-to-r from-[#991b1b] via-[#dc2626] to-[#b91c1c] pt-10 pb-16 sm:pb-20 px-6 sm:px-10 text-center text-white relative overflow-hidden">
+                        {/* Dot Matrix Patterns */}
+                        <div className="absolute top-4 left-4 sm:top-6 sm:left-10 grid grid-cols-5 gap-2 opacity-25 pointer-events-none">
+                            {Array.from({ length: 20 }).map((_, i) => (
+                                <div key={i} className="w-1.5 h-1.5 rounded-full bg-white" />
+                            ))}
+                        </div>
+                        <div className="absolute top-6 right-4 sm:top-8 sm:right-10 grid grid-cols-5 gap-2 opacity-25 pointer-events-none">
+                            {Array.from({ length: 20 }).map((_, i) => (
+                                <div key={i} className="w-1.5 h-1.5 rounded-full bg-white" />
+                            ))}
+                        </div>
+                        <div className="absolute -top-16 -left-16 w-64 h-64 rounded-full bg-red-400/25 blur-3xl pointer-events-none" />
+                        <div className="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-rose-400/25 blur-3xl pointer-events-none" />
+
+                        <div className="relative z-10 max-w-3xl mx-auto space-y-2">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white drop-shadow-xs">
+                                Grow Your Business with SN Business
+                            </h2>
+                            <p className="text-xs sm:text-sm md:text-base text-red-100/90 max-w-2xl mx-auto leading-relaxed font-normal">
+                                List your business online, reach more customers, and get direct calls and WhatsApp enquiries.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* 3 Floating Cards (Image 2) */}
+                    <div className="max-w-5xl mx-auto px-4 sm:px-8 -mt-10 sm:-mt-12 relative z-10 pb-8 sm:pb-10">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+                            {/* Card 1: Online Business */}
+                            <div 
+                                onClick={() => setActiveModal("advertising-quote")}
+                                className="bg-white rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-slate-100/90 p-6 sm:p-7 text-center flex flex-col items-center justify-center hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer group"
+                            >
+                                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#e6f8ee] flex items-center justify-center mb-3 sm:mb-4 shadow-xs group-hover:scale-105 transition-transform">
+                                    <svg className="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M3 9l1.5-5h15l1.5 5" />
+                                        <path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0" />
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                                        <path d="M9 22v-6h6v6" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                                    Online Business
+                                </h3>
+                                <p className="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">
+                                    Show your business to more people.
+                                </p>
+                            </div>
+
+                            {/* Card 2: Find Local Customers */}
+                            <div 
+                                onClick={() => setActiveModal("advertising-quote")}
+                                className="bg-white rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-slate-100/90 p-6 sm:p-7 text-center flex flex-col items-center justify-center hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer group"
+                            >
+                                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#fff0e6] flex items-center justify-center mb-3 sm:mb-4 shadow-xs group-hover:scale-105 transition-transform">
+                                    <svg className="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none" stroke="#f97316" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M12 21c-4.5-5.5-7-9.5-7-13a7 7 0 1 1 14 0c0 3.5-2.5 7.5-7 13z" />
+                                        <circle cx="12" cy="8.5" r="2.5" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                                    Find Local Customers
+                                </h3>
+                                <p className="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">
+                                    Help nearby customers find you easily.
+                                </p>
+                            </div>
+
+                            {/* Card 3: Get More Enquiries */}
+                            <div 
+                                onClick={() => setActiveModal("advertising-quote")}
+                                className="bg-white rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-slate-100/90 p-6 sm:p-7 text-center flex flex-col items-center justify-center hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer group"
+                            >
+                                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#eaf1fd] flex items-center justify-center mb-3 sm:mb-4 shadow-xs group-hover:scale-105 transition-transform">
+                                    <svg className="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.16-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"
+                                            fill="#2563eb"
+                                        />
+                                        <path
+                                            d="M16.5 14.3c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.4.1-.1.2-.5.7-.6.8-.1.1-.2.2-.4.1-.2-.1-.9-.3-1.7-1-.6-.5-1.1-1.2-1.2-1.4-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.4.1-.1.1-.2.2-.3.1-.1 0-.2 0-.3s-.4-1-.6-1.4c-.2-.4-.4-.3-.5-.3h-.4c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.5.5.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.2-.2-.2-.4-.3z"
+                                            fill="#ffffff"
+                                        />
+                                    </svg>
+                                </div>
+                                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                                    Get More Enquiries
+                                </h3>
+                                <p className="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">
+                                    Get calls and WhatsApp messages from customers.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* CTA Action Bar */}
+                        <div className="mt-8 text-center">
                             <button
                                 onClick={() => setActiveModal("advertising-quote")}
-                                className="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs transition-all shadow-md active:scale-95"
+                                className="inline-flex items-center gap-2 bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-7 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-red-600/20 active:scale-95 cursor-pointer"
                             >
-                                List Your Business Free
+                                <span>List Your Business Free</span>
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -2135,6 +2484,100 @@ export default function HomePage() {
                                     >
                                         Explore Categories
                                     </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeModal === "listing-detail" && selectedListing && (
+                            <div className="space-y-4">
+                                {selectedListing.type === "poster" ? (
+                                    <div className="rounded-2xl overflow-hidden bg-slate-900 max-h-80 shadow-md">
+                                        <img
+                                            src={selectedListing.image}
+                                            alt={selectedListing.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="p-4 bg-blue-50/80 rounded-2xl border border-blue-100">
+                                        <div className="w-8 h-8 rounded-lg bg-white text-blue-600 flex items-center justify-center mb-2 shadow-2xs">
+                                            <DocumentListingIcon className="w-4 h-4 text-blue-600" />
+                                        </div>
+                                        <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
+                                            {selectedListing.fullText || selectedListing.text}
+                                        </p>
+                                    </div>
+                                )}
+
+                                <div>
+                                    <div className="flex items-center gap-1.5 flex-wrap">
+                                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
+                                            {selectedListing.city || selectedCity}
+                                        </span>
+                                        {selectedListing.category && (
+                                            <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">
+                                                {selectedListing.category}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <h3 className="text-lg font-black text-slate-900 mt-2 leading-snug">
+                                        {selectedListing.title}
+                                    </h3>
+                                    <p className="text-xs text-slate-500 mt-1">
+                                        Listed by: <span className="font-semibold text-slate-800 capitalize">{selectedListing.author}</span>
+                                    </p>
+                                </div>
+
+                                <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
+                                    <a
+                                        href={`tel:${selectedListing.phone.replace(/[^0-9+]/g, "")}`}
+                                        className="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-xs transition-all"
+                                    >
+                                        <PhoneIcon className="w-4 h-4 text-white" />
+                                        <span>Call: {selectedListing.phone}</span>
+                                    </a>
+                                    <a
+                                        href={`https://wa.me/91${selectedListing.phone.replace(/[^0-9]/g, "")}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex-1 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-xs transition-all"
+                                    >
+                                        <span>WhatsApp Enquiry</span>
+                                    </a>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeModal === "all-listings" && (
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                                    <h3 className="text-base font-black text-slate-900">
+                                        Special Advertisements (विशेष विज्ञापन) ({recentListings.length})
+                                    </h3>
+                                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                                        {selectedCity}
+                                    </span>
+                                </div>
+
+                                <div className="space-y-2.5 max-h-96 overflow-y-auto pr-1">
+                                    {recentListings.map((item) => (
+                                        <div
+                                            key={item.id}
+                                            className="p-3 bg-slate-50 hover:bg-blue-50/50 rounded-xl border border-slate-200/80 transition-all flex items-start justify-between gap-3"
+                                        >
+                                            <div className="truncate flex-1">
+                                                <h4 className="text-xs font-bold text-slate-900 truncate">{item.title}</h4>
+                                                <p className="text-[11px] text-slate-500 mt-0.5 capitalize">{item.author} • {item.city || selectedCity}</p>
+                                            </div>
+                                            <a
+                                                href={`tel:${item.phone.replace(/[^0-9+]/g, "")}`}
+                                                className="shrink-0 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-bold shadow-2xs hover:bg-blue-700 flex items-center gap-1"
+                                            >
+                                                <PhoneIcon className="w-3 h-3 text-white" />
+                                                <span>Call</span>
+                                            </a>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         )}

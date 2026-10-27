@@ -158,7 +158,7 @@ export default function UserLoginPage() {
                 localStorage.setItem("sn_user_session", JSON.stringify(user));
             }
 
-            window.location.href = "/Home";
+            window.location.href = "/user";
         }, 600);
     };
 
